@@ -1,4 +1,4 @@
-from flask import Blueprint, redirect, url_for, render_template
+from flask import Blueprint, redirect, url_for, render_template, current_app, flash
 from .models import Item, Store
 from . import db_manager as db
 
@@ -15,6 +15,12 @@ def init():
 def items_list():
     # select amb join que retorna una llista dwe resultats
     items_with_stores = db.session.query(Item, Store).join(Store).order_by(Item.id.asc()).all()
+    # depuració
+    count = len(items_with_stores)
+    current_app.logger.debug(f"Hi ha {count} items a la BD")
+    # missatges flash
+    flash(f"Hi ha {count} items disponibles", "info")
+    # mostrar pàgina
     return render_template('items_list.html', items_with_stores = items_with_stores)
 
 @main_bp.route('/items/read/<int:item_id>')
