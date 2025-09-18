@@ -1,4 +1,4 @@
-from flask import Flask, redirect, url_for, render_template, current_app, flash
+from flask import Flask, redirect, url_for, render_template, flash
 from flask_debugtoolbar import DebugToolbarExtension
 from flask_sqlalchemy import SQLAlchemy
 import os
@@ -51,7 +51,7 @@ def items_list():
     items_with_stores = db.session.query(Item, Store).join(Store).order_by(Item.id.asc()).all()
     # depuració
     count = len(items_with_stores)
-    current_app.logger.debug(f"Hi ha {count} items a la BD")
+    app.logger.info(f"Hi ha {count} items a la BD")
     # missatges flash
     flash(f"Hi ha {count} items disponibles", "info")
     # mostrar pàgina

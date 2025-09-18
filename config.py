@@ -8,6 +8,7 @@ class Config:
 
     # clau secreta per a les sessions guardades a les cookies
     SECRET_KEY = environ.get('SECRET_KEY')
-    
+
     # debug toolbar
-    DEBUG_TB_ENABLED = environ.get('DEBUG_TB_ENABLED', False)
+    # https://stackoverflow.com/questions/63116419/evaluate-boolean-environment-variable-in-python
+    DEBUG_TB_ENABLED = environ.get('DEBUG_TB_ENABLED', "false").lower() == "true"
