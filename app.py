@@ -16,4 +16,5 @@ def init():
 
 @app.route('/items/list')
 def items_list():
+    app.logger.info("Es mostra la llista d'items")
     return render_template('items_list.html')
