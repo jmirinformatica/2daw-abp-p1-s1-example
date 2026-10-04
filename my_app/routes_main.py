@@ -1,6 +1,8 @@
 from flask import Blueprint, redirect, url_for, render_template, current_app, flash
-from .models import Item, Store
-from . import db_manager as db
+
+from .models import db
+from .models.item import Item
+from .models.store import Store
 
 # Blueprint
 main_bp = Blueprint(
