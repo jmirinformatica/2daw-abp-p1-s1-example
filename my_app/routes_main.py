@@ -1,8 +1,9 @@
 from flask import Blueprint, redirect, url_for, render_template, current_app, flash
-from .models import Item, Store
+
+from .models import db
+from .models.item import Item
+from .models.store import Store
 from .forms import ItemForm, DeleteForm
-from . import db_manager as db
-from flask import current_app
 
 # Blueprint
 main_bp = Blueprint(
