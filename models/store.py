@@ -1,4 +1,4 @@
-from models import db
+from . import db
 
 # Taula stores
 class Store(db.Model):
