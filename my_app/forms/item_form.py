@@ -13,7 +13,3 @@ class ItemForm(FlaskForm):
         validators = [InputRequired()]
     )
     submit = SubmitField()
-
-# Formulari generic per esborrar i aprofitar la CSRF Protection
-class DeleteForm(FlaskForm):
-    submit = SubmitField()
