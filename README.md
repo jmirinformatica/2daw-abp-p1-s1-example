@@ -11,4 +11,4 @@ Tots els exemples són a una branca pròpia:
 * [e-blueprint](https://github.com/jmirinformatica/2daw-abp-p1-example/tree/e-blueprint)
 * [f-wtforms](https://github.com/jmirinformatica/2daw-abp-p1-example/tree/f-wtforms)
 
-Per ubicar-se en una branca, per exemple la primera, has de fer `git checkout a-hello-world.
+Per ubicar-se en una branca, per exemple la primera, has de fer `git checkout a-hello-world`.
