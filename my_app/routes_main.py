@@ -4,6 +4,7 @@ from .models import db
 from .models.item import Item
 from .models.store import Store
 from .forms import ItemForm, DeleteForm
+from .helper_role import HelperRole as hr
 
 # Blueprint
 main_bp = Blueprint(
@@ -19,6 +20,7 @@ def init():
 
 @main_bp.route('/items/list')
 @login_required
+@hr.require_view_permission.require(http_exception=403)
 def items_list():
     # select amb join que retorna una llista de resultats
     items_with_stores = db.session.query(Item, Store).join(Store).order_by(Item.id.asc()).all()
@@ -32,6 +34,7 @@ def items_list():
 
 @main_bp.route('/items/update/<int:item_id>',methods = ['POST', 'GET'])
 @login_required
+@hr.require_edit_permission.require(http_exception=403)
 def items_update(item_id):
     # select amb 1 resultat
     item = db.session.query(Item).filter(Item.id == item_id).one()
@@ -58,6 +61,7 @@ def items_update(item_id):
 
 @main_bp.route('/items/create', methods = ['POST', 'GET'])
 @login_required
+@hr.require_edit_permission.require(http_exception=403)
 def items_create(): 
     # select que retorna una llista de resultats
     stores = db.session.query(Store).order_by(Store.id.asc()).all()
@@ -84,6 +88,7 @@ def items_create():
 
 @main_bp.route('/items/read/<int:item_id>')
 @login_required
+@hr.require_view_permission.require(http_exception=403)
 def items_read(item_id):
     # select amb join i 1 resultat
     (item, store) = db.session.query(Item, Store).join(Store).filter(Item.id == item_id).one()
@@ -92,6 +97,7 @@ def items_read(item_id):
 
 @main_bp.route('/items/delete/<int:item_id>',methods = ['GET', 'POST'])
 @login_required
+@hr.require_edit_permission.require(http_exception=403)
 def items_delete(item_id):
     # select amb 1 resultat
     item = db.session.query(Item).filter(Item.id == item_id).one()

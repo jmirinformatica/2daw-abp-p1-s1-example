@@ -3,6 +3,7 @@ from flask_login import current_user, login_user, login_required, logout_user
 from . import login_manager
 from .models.user import User
 from .forms import LoginForm
+from .helper_role import HelperRole
 from .models import db
 from werkzeug.security import check_password_hash
 
@@ -27,6 +28,9 @@ def login():
         if user and check_password_hash(user.password, plain_text_password):
             # aquí és crea la cookie
             login_user(user)
+            # aquí s'actualitzen els rols que té l'usuari
+            HelperRole.notify_identity_changed()
+            
             flash("Sessió iniciada correctament", "success")
             return redirect(url_for("main_bp.init"))
 

@@ -1,10 +1,17 @@
 from flask import Flask
 from flask_login import LoginManager
+from flask_principal import Principal
 
 login_manager = LoginManager()
+principal_manager =  Principal()
 
 def configure_db(app):
-    # Inicialitza SQLAlchemy
+    # Inicialitza el login manager
+    login_manager.init_app(app)
+
+    # Initialitza flask_principal per a gestionar els rols
+    principal_manager.init_app(app)
+
     from .models import db
     db.init_app(app)
     
@@ -24,11 +31,12 @@ def create_app():
     login_manager.init_app(app)
     
     with app.app_context():
-        from . import routes_main, routes_auth
+        from . import routes_main, routes_auth, routes_admin
 
         # Registra els blueprints
         app.register_blueprint(routes_main.main_bp)
         app.register_blueprint(routes_auth.auth_bp)
+        app.register_blueprint(routes_admin.admin_bp)
 
     app.logger.info("Aplicació iniciada")
 
