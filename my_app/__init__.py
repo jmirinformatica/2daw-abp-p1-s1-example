@@ -1,6 +1,4 @@
 from flask import Flask
-from flask_sqlalchemy import SQLAlchemy
-import os
 
 def configure_db(app):
     # Inicialitza SQLAlchemy
