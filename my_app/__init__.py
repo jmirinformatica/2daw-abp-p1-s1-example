@@ -1,4 +1,7 @@
 from flask import Flask
+from flask_login import LoginManager
+
+login_manager = LoginManager()
 
 def configure_db(app):
     # Inicialitza SQLAlchemy
@@ -17,11 +20,15 @@ def create_app():
     # Configuració de la base de dades
     configure_db(app)
 
+    # Inicialitza el login manager
+    login_manager.init_app(app)
+    
     with app.app_context():
-        from . import routes_main
+        from . import routes_main, routes_auth
 
         # Registra els blueprints
         app.register_blueprint(routes_main.main_bp)
+        app.register_blueprint(routes_auth.auth_bp)
 
     app.logger.info("Aplicació iniciada")
 
