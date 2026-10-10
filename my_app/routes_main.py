@@ -4,7 +4,7 @@ from . import mail_manager as mail
 from .models import db
 from .models.item import Item
 from .models.store import Store
-from .forms import ItemForm, DeleteForm
+from .forms import ItemForm, DeleteForm, ContactForm
 from .helper_role import HelperRole as hr
 
 # Blueprint
