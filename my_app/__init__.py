@@ -1,9 +1,11 @@
 from flask import Flask
 from flask_login import LoginManager
 from flask_principal import Principal
+from .helper_mail import MailManager
 
 login_manager = LoginManager()
 principal_manager =  Principal()
+mail_manager = MailManager()
 
 def configure_db(app):
     # Inicialitza el login manager
@@ -11,6 +13,9 @@ def configure_db(app):
 
     # Initialitza flask_principal per a gestionar els rols
     principal_manager.init_app(app)
+
+    # Inicialitza el gestor de correu
+    mail_manager.init_app(app)
 
     from .models import db
     db.init_app(app)
@@ -26,6 +31,9 @@ def create_app():
 
     # Configuració de la base de dades
     configure_db(app)
+
+    # Inicialitza el gestor de correu
+    mail_manager.init_app(app)
 
     # Inicialitza el login manager
     login_manager.init_app(app)
