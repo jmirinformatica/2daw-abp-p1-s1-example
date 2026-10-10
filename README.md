@@ -10,5 +10,9 @@ Tots els exemples són a una branca pròpia:
 * [d-sqlalchemy](https://github.com/jmirinformatica/2daw-abp-p1-example/tree/d-sqlalchemy)
 * [e-blueprint](https://github.com/jmirinformatica/2daw-abp-p1-example/tree/e-blueprint)
 * [f-wtforms](https://github.com/jmirinformatica/2daw-abp-p1-example/tree/f-wtforms)
+* [g-flask-login](https://github.com/jmirinformatica/2daw-abp-p1-example/tree/g-flask-login)
+* [h-flask-principal](https://github.com/jmirinformatica/2daw-abp-p1-example/tree/h-flask-principal)
+* [i-gmail](https://github.com/jmirinformatica/2daw-abp-p1-example/tree/i-gmail)
+* [j-buscador](https://github.com/jmirinformatica/2daw-abp-p1-example/tree/j-buscador)
 
 Per ubicar-se en una branca, per exemple la primera, has de fer `git checkout a-hello-world`.
